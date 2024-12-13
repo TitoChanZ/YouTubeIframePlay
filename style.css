@@ -1,0 +1,81 @@
+body,html{
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid; */
+  margin: 0;
+  padding: 0;
+  /* background: #000; */
+  
+}
+
+.iframeYT{
+  width: 100%;
+  height: 100%;
+}
+.message{
+  position: absolute;
+  background: #aaa;
+  color: #fff;
+  
+}
+.loadingContainer{
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  animation: changeColor 2s linear 1;
+}
+.loadingIcon{
+  position: absolute;
+  z-index: 0;
+  width: 50px;
+  height: 50px;
+  border: 5px solid;
+  border-color: #f0f #0000;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  animation: rotate 0.5s linear 3;
+  visibility: hidden;
+
+ 
+}
+.loadingIconYT{
+  position: absolute;
+  z-index: 0;
+  width: 50px;
+  height: 50px;
+  border: 5px solid;
+  border-color: #f0f #0000;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 50%;
+  object-fit: contain;
+  animation: scale 1s linear 2;
+  visibility: hidden;
+ 
+}
+@keyframes rotate {
+  0%{transform: rotate(0deg); visibility: visible;}
+  100%{transform: rotate(360deg);}
+}
+@keyframes scale {
+  0%{width: 50px;
+    height: 50px;
+    visibility: visible;}
+  50%{width: 200px;
+    height: 200px;}
+  100%{width: 50px;
+    height: 50px;}
+}
+@keyframes changeColor {
+  0%{background: #fff;}
+  100%{background: #f00;}
+
+}

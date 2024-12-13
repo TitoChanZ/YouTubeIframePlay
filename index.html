@@ -5,10 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YouTube Iframe Play</title>
   <link rel="stylesheet" href="style.css">
+  <script src="iframe_api.js"></script>
 </head>
 <body>
-  <h1 id="getData">hola mundo</h1>
-  <iframe id="iframeYT" width="560" height="315" src=""  frameborder="0" allow="autoplay" encrypted-media allowfullscreen></iframe>
+  <h1 class="message" id="getData">hola mundo</h1>
+  <div class="loadingContainer">
+    <i class="loadingIcon"></i>
+    <img src="/src/1384060.png" class="loadingIconYT"/>
+  </div>
+
+  <div id="player" class="iframeYT"></div>
+
+  <!-- <iframe class="iframeYT" id="iframeYT" width="100%" height="100%" src=""  frameborder="0" allow="autoplay" encrypted-media allowfullscreen></iframe> -->
+  <!-- <iframe class="iframeYT" id="iframeYT" width="100%" height="100%" src=""  frameborder="0" allow="autoplay" encrypted-media allowfullscreen></iframe> -->
   <script src="app.js"></script>
 </body>
 </html>
