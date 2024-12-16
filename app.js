@@ -20,7 +20,9 @@ function onYouTubeIframeAPIReady() {
           
           videoId: idYT,  // ID del video de YouTube
           playerVars: {
-            'playlist': playList,  // ID de la playlist (reemplaza con tu lista)
+            // 'listType':'playlist',
+            // 'list': 'PLT5y5w-8B2ArLlpSxhO-F_LpMUpA8-jBp',  // ID de la playlist (reemplaza con tu lista)
+            // 'index':1,
             'autoplay': 1,           // Reproducción automática (opcional)
             'loop': 1,               // Repetir playlist (opcional)
             'modestbranding': 1,     // Quitar marca de YouTube (opcional)
@@ -29,7 +31,8 @@ function onYouTubeIframeAPIReady() {
               'onReady': onPlayerReady,
               'onStateChange': onPlayerStateChange
           }
-      });
+      })
+
   
     }
   }else{
@@ -40,6 +43,8 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
     // Iniciar el video automáticamente
+    // player.setShuffle(true)
+    player.nextVideo()
     event.target.playVideo();
 }
 
