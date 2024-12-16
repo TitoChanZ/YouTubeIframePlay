@@ -10,6 +10,7 @@ var player;
 function onYouTubeIframeAPIReady() {
   if (params!='null'){
     var idYT = params.get('id')
+    var playList = params.get('playList')
     text.innerHTML='Con parámetros | '+params+' | '+idYT
     if(idYT){
       text.innerHTML='Parámetros Completos | '+idYT
@@ -17,7 +18,13 @@ function onYouTubeIframeAPIReady() {
       text.innerHTML=urlYT
       player = new YT.Player('player', {
           
-          videoId: idYT,  // Reemplaza 'VIDEO_ID' con el ID del video de YouTube
+          videoId: idYT,  // ID del video de YouTube
+          playerVars: {
+            'playlist': playList,  // ID de la playlist (reemplaza con tu lista)
+            'autoplay': 1,           // Reproducción automática (opcional)
+            'loop': 1,               // Repetir playlist (opcional)
+            'modestbranding': 1,     // Quitar marca de YouTube (opcional)
+          },
           events: {
               'onReady': onPlayerReady,
               'onStateChange': onPlayerStateChange
@@ -32,7 +39,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    // Si quieres iniciar el video automáticamente
+    // Iniciar el video automáticamente
     event.target.playVideo();
 }
 
@@ -44,7 +51,7 @@ function onPlayerStateChange(event) {
   }
 }
 window.addEventListener('message', function(event) {
-  // if (event.origin === 'https://mi-dominio-con-cifrado.com') {
+  // if (event.origin === 'https://titochanz.github.io/') {
       if (event.data === 'play') {
           player.playVideo();  // Reproducir el video
       } else if (event.data === 'pause') {
@@ -63,3 +70,4 @@ window.addEventListener('message', function(event) {
 
 // juoRKH4YWrA  DVRST, STM - Electric Dream
 // gyXy0m-4bvE  NU'EST(뉴이스트) _ FACE(페이스)
+// PLT5y5w-8B2ArLlpSxhO-F_LpMUpA8-jBp PlayListId
