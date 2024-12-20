@@ -3,41 +3,36 @@ var params = new URLSearchParams(window.location.search)
 var text = document.getElementById('getData')
 // var iframeYT = document.getElementById('iframeYT')
 
-
+// Parámetros Para Reproducir
+var playYtType = null
+var idYT = null
+var idYtPlayList = null
+var indexYtPlay = null
 
 var player;
 
 function onYouTubeIframeAPIReady() {
   if (params!='null'){
-    var idYT = params.get('id')
-    var playList = params.get('playList')
-    text.innerHTML='Con parámetros | '+params+' | '+idYT
-    if(idYT){
-      text.innerHTML='Parámetros Completos | '+idYT
-      var urlYT = `https://www.youtube.com/?id=${idYT}`
-      text.innerHTML=urlYT
-      player = new YT.Player('player', {
-          videoId: '',  // ID del video de YouTube
-          playerVars: {
-
-            'listType':'playlist',
-            'playlist': 'PLT5y5w-8B2ArLlpSxhO-F_LpMUpA8-jBp',  // ID de la playlist (reemplaza con tu lista)
-            'index':5,
-
-            'autoplay': 0,           // Reproducción automática (opcional)
-            'loop': 1,               // Repetir playlist (opcional)
-            'modestbranding': 1,     // Quitar marca de YouTube (opcional)
-          },
-          events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
-          }
-      })
-      // playYtById(idYT)
-
-
-  
-    }
+    playYtType = params.get('playType')
+    idYT = params.get('id')
+    idYtPlayList = params.get('playList')
+    indexYtPlay = params.get('indexPlay')
+    // text.innerHTML='Con parámetros | '+params+' | '+idYT
+    text.innerHTML='Parámetros Completos | '+idYT
+    var urlYT = `https://www.youtube.com/?id=${idYT}`
+    text.innerHTML=urlYT
+    player = new YT.Player('player', {
+      // videoId: '',  // ID del video de YouTube
+      playerVars: {
+        'autoplay': 0,           // Reproducción automática (opcional)
+        'loop': 1,               // Repetir playlist (opcional)
+        'modestbranding': 1,     // Quitar marca de YouTube (opcional)
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    })
   }else{
     text.innerHTML='Sin Datos'+" | "+params
   }
@@ -47,8 +42,15 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
     // Iniciar el video automáticamente
     // player.setShuffle(true)
-    player.nextVideo()
-    event.target.playVideo();
+    // player.nextVideo()
+    // event.target.playVideo();
+    if(playYtType==0 && idYT ){
+      text.innerHTML="Video cargado por id: "+idYT
+      playYtById(idYT)
+    }else if(playYtType==1 && idYtPlayList ){
+      playYtList(idYtPlayList,indexYtPlay)
+    }
+    // playYtList('PLT5y5w-8B2ArLlpSxhO-F_LpMUpA8-jBp',4)
 }
 
 function onPlayerStateChange(event) {
@@ -57,6 +59,7 @@ function onPlayerStateChange(event) {
   } else if (event.data == YT.PlayerState.PAUSED) {
       console.log('El video está pausado');
   }
+  // targetFrame.contentWindow.postMessage("eventosDeYt", targetOrigin)
 }
 window.addEventListener('message', function(event) {
   // if (event.origin === 'https://titochanz.github.io/') {
@@ -70,12 +73,16 @@ window.addEventListener('message', function(event) {
 });
 
 function playYtList(idList,index){
-  player.loadVideoById(idYT, 5, "large")
+  player.loadPlaylist({
+    listType: 'playlist',
+    list: idList,
+    index: index,        
+    // startSeconds: 120, 
+  })
 }
 
-
 function playYtById(id){
-  player.loadVideoById(id, 5, "large")
+  player.loadVideoById({videoId:id})
 }
 
 
