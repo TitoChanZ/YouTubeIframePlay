@@ -17,12 +17,13 @@ function onYouTubeIframeAPIReady() {
       var urlYT = `https://www.youtube.com/?id=${idYT}`
       text.innerHTML=urlYT
       player = new YT.Player('player', {
-          
-          videoId: idYT,  // ID del video de YouTube
+          videoId: '',  // ID del video de YouTube
           playerVars: {
-            // 'listType':'playlist',
-            // 'list': 'PLT5y5w-8B2ArLlpSxhO-F_LpMUpA8-jBp',  // ID de la playlist (reemplaza con tu lista)
-            // 'index':1,
+
+            'listType':'playlist',
+            'playlist': 'PLT5y5w-8B2ArLlpSxhO-F_LpMUpA8-jBp',  // ID de la playlist (reemplaza con tu lista)
+            'index':5,
+
             'autoplay': 1,           // Reproducción automática (opcional)
             'loop': 1,               // Repetir playlist (opcional)
             'modestbranding': 1,     // Quitar marca de YouTube (opcional)
@@ -32,6 +33,8 @@ function onYouTubeIframeAPIReady() {
               'onStateChange': onPlayerStateChange
           }
       })
+      // playYtById(idYT)
+
 
   
     }
@@ -65,6 +68,23 @@ window.addEventListener('message', function(event) {
   // }
   console.log("[https] "+event.data)
 });
+
+function playYtList(idList,index){
+  player.loadVideoById(idYT, 5, "large")
+}
+
+
+function playYtById(id){
+  player.loadVideoById(id, 5, "large")
+}
+
+
+
+
+
+
+
+
 
 // setTimeout(()=>{player.playVideo();},3000)
 
