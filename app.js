@@ -24,7 +24,7 @@ function onYouTubeIframeAPIReady() {
             'playlist': 'PLT5y5w-8B2ArLlpSxhO-F_LpMUpA8-jBp',  // ID de la playlist (reemplaza con tu lista)
             'index':5,
 
-            'autoplay': 1,           // Reproducción automática (opcional)
+            'autoplay': 0,           // Reproducción automática (opcional)
             'loop': 1,               // Repetir playlist (opcional)
             'modestbranding': 1,     // Quitar marca de YouTube (opcional)
           },
