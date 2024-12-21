@@ -54,6 +54,9 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
+  const displayOrigin = "http://192.168.0.40:1500/Display.html"
+  targetFrame.contentWindow.postMessage(event, displayOrigin);
+
   if (event.data == YT.PlayerState.PLAYING) {
       console.log('El video está reproduciéndose');
   } else if (event.data == YT.PlayerState.PAUSED) {
