@@ -55,13 +55,17 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
   const displayOrigin = "http://192.168.0.40:1500/Display.html"
-  targetFrame.contentWindow.postMessage(event, displayOrigin);
+  window.parent.postMessage({statusPlayer:event.data}, displayOrigin);
 
   if (event.data == YT.PlayerState.PLAYING) {
       console.log('El video está reproduciéndose');
   } else if (event.data == YT.PlayerState.PAUSED) {
       console.log('El video está pausado');
   }
+  // console.log("[https onPlayerStateChange] ")
+  // console.log(event.data)
+  // console.log("=====================")
+
   // targetFrame.contentWindow.postMessage("eventosDeYt", targetOrigin)
 }
 window.addEventListener('message', function(event) {
@@ -72,7 +76,7 @@ window.addEventListener('message', function(event) {
           player.pauseVideo();  // Pausar el video
       }
   // }
-  console.log("[https] "+event.data)
+  //! console.log("[https] "+event.data) =====================
 });
 
 function playYtList(idList,index){
